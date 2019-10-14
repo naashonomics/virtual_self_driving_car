@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Intro To Programming</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.7.1/pixi.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.7.1/brython.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.7.1/brython_stdlib.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/1.0.10/pako.js"></script>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+
+
+</head>
+
+<body onload="brython()">
+
+
+    <style>
+        #editor {
+            position: relative;
+            height: 600px;
+            width: 100%;
+        }
+    </style>
+    <div style="width: 100%;">
+        <div style="float:left; width: 50%; height: 100%;">
+            <iframe id="myframe" src="env.html" width="550" height="520">
+                Sorry your browser does not support inline frames.
+            </iframe>
+        </div>
+        <div style="float:right; width: 50%; height: 600px">
+            <button onclick="execute()">Execute</button>
+            <div id="editor">
+print("hello world!")
+from browser import document, window, alert, aio
+env = window.env
+
+for initialMove in range(5):
+    env.step(0)
+
+async def sleep():
+    await aio.sleep(0.2)
+
+def isRoadAheadAvailable():
+        lidarState = env.getState().lidar
+        lidarState.reverse()
+        carFrontLidarLine = lidarState[2]  # Radar line rigth in front of us
+        if (carFrontLidarLine == [0,0,0,0,0]): # We're about to hit something!
+            return False
+        else: # Road is clear!
+            return True
+
+######################
+# Start Learning Here
+######################
+
+def MoveManyStepsForward(numberOfSteps):
+    for everySingleNumberInTheRange in range(numberOfSteps):
+        env.step(0)
+
+async def main():
+    MoveManyStepsForward(10)
+    await sleep()
+    
+#######################
+## End Learning Here
+#######################
+aio.run(main())
+
+
+
+
+
+
+
+
+                
+            </div>
+        </div>
+    </div>
+    <div style="clear:both"></div>
+
+
+    <script src="//ajaxorg.github.io/ace-builds/src-min-noconflict/ace.js" type="text/javascript"
+        charset="utf-8"></script>
+
+    <script>
+
+        function _arrayBufferToBase64(buffer) {
+            var binary = '';
+            var bytes = new Uint8Array(buffer);
+            var len = bytes.byteLength;
+            for (var i = 0; i < len; i++) {
+                binary += String.fromCharCode(bytes[i]);
+            }
+            return window.btoa(binary);
+        }
+
+        function run_python(src) {
+            // dynamically create an invisible DIV with type="text/python3"
+            let compressedCode = btoa(pako.gzip(src, { to: 'string' }));
+            let url = 'env.html?action=' + encodeURIComponent(compressedCode);
+            document.getElementById("myframe").setAttribute("src", url);
+            //eval(code)
+            //            eval(__BRYTHON__.py2js(src).to_js())
+
+        }
+
+
+        function execute() {
+            var code = editor.getValue();
+
+            run_python(code)
+
+        }
+
+        var editor = ace.edit("editor");
+        editor.setOptions({
+            fontSize: "12pt"
+        });
+        editor.getSession().setUseWorker(false);
+        editor.setTheme("ace/theme/monokai");
+        editor.getSession().setMode("ace/mode/python");
+
+    </script>
+
+    <script>
+        var mapObj = {
+    "cars": [],
+    "road": [
+        {
+            "x": 240,
+            "y": 0
+        },
+        {
+            "x": 240,
+            "y": 60
+        },
+        {
+            "x": 240,
+            "y": 120
+        },
+        {
+            "x": 240,
+            "y": 180
+        },
+        {
+            "x": 240,
+            "y": 240
+        },
+        {
+            "x": 240,
+            "y": 300
+        },
+        {
+            "x": 240,
+            "y": 360
+        },
+        {
+            "x": 240,
+            "y": 420
+        },
+        {
+            "x": 240,
+            "y": 60
+        }
+    ],
+    "asset": [
+        {
+            "x": 225.41668701171875,
+            "y": 197.5
+        },
+        {
+            "x": 242.91668701171875,
+            "y": 313.33331298828125
+        }
+    ],
+    "tree": [
+        {
+            "x": 242.91668701171875,
+            "y": 313.33331298828125
+        }
+    ],
+    "map": [
+        [
+            0,
+            0,
+            0,
+            0,
+            "↕",
+            0,
+            0,
+            0,
+            0
+        ],
+        [
+            0,
+            0,
+            0,
+            0,
+            "↕",
+            0,
+            0,
+            0,
+            0
+        ],
+        [
+            0,
+            0,
+            0,
+            0,
+            "↕",
+            0,
+            0,
+            0,
+            0
+        ],
+        [
+            0,
+            0,
+            0,
+            0,
+            "↕",
+            0,
+            0,
+            0,
+            0
+        ],
+        [
+            0,
+            0,
+            0,
+            0,
+            "↕",
+            0,
+            0,
+            0,
+            0
+        ],
+        [
+            0,
+            0,
+            0,
+            0,
+            "↕",
+            0,
+            0,
+            0,
+            0
+        ],
+        [
+            0,
+            0,
+            0,
+            0,
+            "↕",
+            0,
+            0,
+            0,
+            0
+        ],
+        [
+            0,
+            0,
+            0,
+            0,
+            "↕",
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "agent": {
+        "mx": 4,
+        "my": 0,
+        "line": 0,
+        "motion": {
+            "type": "BasicMotionEngine",
+            "options": {
+                "rotationStep": 0.5,
+                "actions": [
+                    "UP",
+                    "LEFT",
+                    "RIGHT",
+                    "DOWN",
+                    "WAIT"
+                ]
+            }
+        }
+    }
+};
+    </script>
+
+
+    <!-- <script src="run.py" type="text/python"></script> -->
+
+</body>
+
+</html>

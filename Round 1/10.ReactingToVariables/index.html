@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Intro To Programming</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.7.1/pixi.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.7.1/brython.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.7.1/brython_stdlib.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    
+</head>
+
+<body onload="brython()">
+    <div id="env"></div>
+    <script src="https://cdn.jsdelivr.net/combine/npm/metacar@0.1.1,npm/metacar@0.1.1"></script>
+    <script>
+        var mapObj = {
+    "cars": [],
+    "road": [
+        {
+            "x": 60,
+            "y": 300
+        },
+        {
+            "x": 60,
+            "y": 360
+        },
+        {
+            "x": 60,
+            "y": 420
+        },
+        {
+            "x": 120,
+            "y": 420
+        },
+        {
+            "x": 180,
+            "y": 420
+        },
+        {
+            "x": 240,
+            "y": 420
+        },
+        {
+            "x": 300,
+            "y": 420
+        },
+        {
+            "x": 360,
+            "y": 420
+        },
+        {
+            "x": 420,
+            "y": 420
+        },
+        {
+            "x": 480,
+            "y": 420
+        },
+        {
+            "x": 480,
+            "y": 360
+        },
+        {
+            "x": 480,
+            "y": 300
+        },
+        {
+            "x": 480,
+            "y": 240
+        },
+        {
+            "x": 480,
+            "y": 180
+        },
+        {
+            "x": 480,
+            "y": 120
+        },
+        {
+            "x": 480,
+            "y": 60
+        },
+        {
+            "x": 420,
+            "y": 60
+        },
+        {
+            "x": 360,
+            "y": 60
+        },
+        {
+            "x": 300,
+            "y": 60
+        },
+        {
+            "x": 240,
+            "y": 60
+        },
+        {
+            "x": 180,
+            "y": 60
+        }
+    ],
+    "asset": [
+        {
+            "x": 134,
+            "y": 85.19999694824219
+        },
+        {
+            "x": 133.199951171875,
+            "y": 51.599998474121094
+        }
+    ],
+    "tree": [
+        {
+            "x": 134,
+            "y": 85.19999694824219
+        },
+        {
+            "x": 133.199951171875,
+            "y": 51.599998474121094
+        }
+    ],
+    "map": [
+        [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        [
+            0,
+            0,
+            0,
+            "↔",
+            "↔",
+            "↔",
+            "↔",
+            "↔",
+            "↰",
+            0
+        ],
+        [
+            0,
+            "↕",
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            "↕",
+            0
+        ],
+        [
+            0,
+            "↕",
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            "↕",
+            0
+        ],
+        [
+            0,
+            "↕",
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            "↕",
+            0
+        ],
+        [
+            0,
+            "↕",
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            "↕",
+            0
+        ],
+        [
+            0,
+            "↕",
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            "↕",
+            0
+        ],
+        [
+            0,
+            "↳",
+            "↔",
+            "↔",
+            "↔",
+            "↔",
+            "↔",
+            "↔",
+            "↲",
+            0
+        ],
+        [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ]
+    ],
+    "agent": {
+        "mx": 1,
+        "my": 2,
+        "line": 0,
+        "motion": {
+            "type": "BasicMotionEngine",
+            "options": {
+                "rotationStep": 0.5,
+                "actions": [
+                    "UP",
+                    "LEFT",
+                    "RIGHT",
+                    "DOWN",
+                    "WAIT"
+                ]
+            }
+        }
+    }
+};
+
+    </script>
+
+    <script>
+        // Select a level
+        const level = metacar.level.level1;
+        // Create the environement
+        var env = new metacar.env("env", mapObj);
+        env.setAgentMotion(metacar.motion.BasicMotion, {rotationStep: 0.25});
+
+        // Load it
+        env.load().then(() => {
+            //moveManySteps();
+        })
+
+    </script>
+
+
+    <script src="run.py" type="text/python"></script>
+
+</body>
+
+</html>
